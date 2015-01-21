@@ -83,11 +83,7 @@ SI: 1 Warning(s)
 
 SI: Do this copy to where we want to run from, like scripts. Seems that once all dlls+wrapper dlls are in the same place, fsi should be able to load. 
 
-$fsharpi
-> #r "Microsoft.Z3";;
-
---> Referenced '/Users/MSRC-MacBookAir/compose-z3-tutorial/z3dll-osx/Microsoft.Z3.dll' (file may be locked by F# Interactive process)
-
+$ fsharpi -I:../platform/osx-mono -r:Microsoft.Z3
 > open Microsoft.Z3 ;;
 > let ctx = new Context ();;
 
