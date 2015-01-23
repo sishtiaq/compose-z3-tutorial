@@ -83,6 +83,7 @@ On OS X, you need to enforce a 32-bit build for compatibility with Mono:
       $ make
       $ popd && popd
 ```
+(Thank you to Marc Brockschmidt for the above perl.) 
 
 Now build the .NET bindings for z3:
 
