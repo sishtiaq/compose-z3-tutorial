@@ -53,15 +53,6 @@ let ctx = new Context()
 type sudoku_grid = IntExpr[,]
 
 // Declare 9X9 variables
-//let x11,x21,x31,x41,x51,x61,x71,x81,x91 = (mk_int_var ctx "x11"), (mk_int_var ctx "x21"), (mk_int_var ctx "x31"), (mk_int_var ctx "x41"), (mk_int_var ctx "x51"), (mk_int_var ctx "x61"), (mk_int_var ctx "x71"), (mk_int_var ctx "x81"), (mk_int_var ctx "x91")
-//let x12,x22,x32,x42,x52,x62,x72,x82,x92 = (mk_int_var ctx "x12"), (mk_int_var ctx "x22"), (mk_int_var ctx "x32"), (mk_int_var ctx "x42"), (mk_int_var ctx "x52"), (mk_int_var ctx "x62"), (mk_int_var ctx "x72"), (mk_int_var ctx "x82"), (mk_int_var ctx "x92")
-//let x13,x23,x33,x43,x53,x63,x73,x83,x93 = (mk_int_var ctx "x13"), (mk_int_var ctx "x23"), (mk_int_var ctx "x33"), (mk_int_var ctx "x43"), (mk_int_var ctx "x53"), (mk_int_var ctx "x63"), (mk_int_var ctx "x73"), (mk_int_var ctx "x83"), (mk_int_var ctx "x93")
-//let x14,x24,x34,x44,x54,x64,x74,x84,x94 = (mk_int_var ctx "x14"), (mk_int_var ctx "x24"), (mk_int_var ctx "x34"), (mk_int_var ctx "x44"), (mk_int_var ctx "x54"), (mk_int_var ctx "x64"), (mk_int_var ctx "x74"), (mk_int_var ctx "x84"), (mk_int_var ctx "x94")
-//let x15,x25,x35,x45,x55,x65,x75,x85,x95 = (mk_int_var ctx "x15"), (mk_int_var ctx "x25"), (mk_int_var ctx "x35"), (mk_int_var ctx "x45"), (mk_int_var ctx "x55"), (mk_int_var ctx "x65"), (mk_int_var ctx "x75"), (mk_int_var ctx "x85"), (mk_int_var ctx "x95")
-//let x16,x26,x36,x46,x56,x66,x76,x86,x96 = (mk_int_var ctx "x16"), (mk_int_var ctx "x26"), (mk_int_var ctx "x36"), (mk_int_var ctx "x46"), (mk_int_var ctx "x56"), (mk_int_var ctx "x66"), (mk_int_var ctx "x76"), (mk_int_var ctx "x86"), (mk_int_var ctx "x96")
-//let x17,x27,x37,x47,x57,x67,x77,x87,x97 = (mk_int_var ctx "x17"), (mk_int_var ctx "x27"), (mk_int_var ctx "x37"), (mk_int_var ctx "x47"), (mk_int_var ctx "x57"), (mk_int_var ctx "x67"), (mk_int_var ctx "x77"), (mk_int_var ctx "x87"), (mk_int_var ctx "x97")
-//let x18,x28,x38,x48,x58,x68,x78,x88,x98 = (mk_int_var ctx "x18"), (mk_int_var ctx "x28"), (mk_int_var ctx "x38"), (mk_int_var ctx "x48"), (mk_int_var ctx "x58"), (mk_int_var ctx "x68"), (mk_int_var ctx "x78"), (mk_int_var ctx "x88"), (mk_int_var ctx "x98")
-//let x19,x29,x39,x49,x59,x69,x79,x89,x99 = (mk_int_var ctx "x19"), (mk_int_var ctx "x29"), (mk_int_var ctx "x39"), (mk_int_var ctx "x49"), (mk_int_var ctx "x59"), (mk_int_var ctx "x69"), (mk_int_var ctx "x79"), (mk_int_var ctx "x89"), (mk_int_var ctx "x99")
 
 // SI: arrays are 0-based, I think. Line 73 crashes "outside the bounds"
 let mk_grid ctx = 
@@ -71,16 +62,16 @@ let mk_grid ctx =
 // 1 <= x_{i,j} <= 9
 let range ctx (x:IntExpr[,]) =        
     let r x = m_le_x_le_n ctx (mk_int ctx 1) x (mk_int ctx 9)
-    mk_ands ctx [ r x.[1,1]; r x.[2,1]; r x.[3,1]; r x.[4,1]; r x.[5,1]; r x.[6,1]; r x.[7,1]; r x.[8,1]; r x.[9,1];
-                  r x.[1,2]; r x.[2,2]; r x.[3,2]; r x.[4,2]; r x.[5,2]; r x.[6,2]; r x.[7,2]; r x.[8,2]; r x.[9,2];
-                  r x.[1,3]; r x.[2,3]; r x.[3,3]; r x.[4,3]; r x.[5,3]; r x.[6,3]; r x.[7,3]; r x.[8,3]; r x.[9,3];
-                  r x.[1,4]; r x.[2,4]; r x.[3,4]; r x.[4,4]; r x.[5,4]; r x.[6,4]; r x.[7,4]; r x.[8,4]; r x.[9,4];
-                  r x.[1,5]; r x.[2,5]; r x.[3,5]; r x.[4,5]; r x.[5,5]; r x.[6,5]; r x.[7,5]; r x.[8,5]; r x.[9,5];
-                  r x.[1,6]; r x.[2,6]; r x.[3,6]; r x.[4,6]; r x.[5,6]; r x.[6,6]; r x.[7,6]; r x.[8,6]; r x.[9,6];
-                  r x.[1,7]; r x.[2,7]; r x.[3,7]; r x.[4,7]; r x.[5,7]; r x.[6,7]; r x.[7,7]; r x.[8,7]; r x.[9,7];
-                  r x.[1,8]; r x.[2,8]; r x.[3,8]; r x.[4,8]; r x.[5,8]; r x.[6,8]; r x.[7,8]; r x.[8,8]; r x.[9,8];
-                  r x.[1,9]; r x.[2,9]; r x.[3,9]; r x.[4,9]; r x.[5,9]; r x.[6,9]; r x.[7,9]; r x.[8,9]; r x.[9,9] ]
-// x11 # x21 # ... # x91
+    mk_ands ctx [ r x.[0,0]; r x.[1,0]; r x.[2,0]; r x.[3,0]; r x.[4,0]; r x.[5,0]; r x.[6,0]; r x.[7,0]; r x.[8,0];
+                  r x.[0,1]; r x.[1,1]; r x.[2,1]; r x.[3,1]; r x.[4,1]; r x.[5,1]; r x.[6,1]; r x.[7,1]; r x.[8,1];
+                  r x.[0,2]; r x.[1,2]; r x.[2,2]; r x.[3,2]; r x.[4,2]; r x.[5,2]; r x.[6,2]; r x.[7,2]; r x.[8,2];
+                  r x.[0,3]; r x.[1,3]; r x.[2,3]; r x.[3,3]; r x.[4,3]; r x.[5,3]; r x.[6,3]; r x.[7,3]; r x.[8,3];
+                  r x.[0,4]; r x.[1,4]; r x.[2,4]; r x.[3,4]; r x.[4,4]; r x.[5,4]; r x.[6,4]; r x.[7,4]; r x.[8,4];
+                  r x.[0,5]; r x.[1,5]; r x.[2,5]; r x.[3,5]; r x.[4,5]; r x.[5,5]; r x.[6,5]; r x.[7,5]; r x.[8,5];
+                  r x.[0,6]; r x.[1,6]; r x.[2,6]; r x.[3,6]; r x.[4,6]; r x.[5,6]; r x.[6,6]; r x.[7,6]; r x.[8,6];
+                  r x.[0,7]; r x.[1,7]; r x.[2,7]; r x.[3,7]; r x.[4,7]; r x.[5,7]; r x.[6,7]; r x.[7,7]; r x.[8,7];
+                  r x.[0,8]; r x.[1,8]; r x.[2,8]; r x.[3,8]; r x.[4,8]; r x.[5,8]; r x.[6,8]; r x.[7,8]; r x.[8,8] ]
+// x11 # x21 # ... # x91        
 let row_distinct ctx (x:IntExpr[,]) = 
     mk_ands ctx [ (mk_distinct ctx [x.[1,1]; x.[2,1]; x.[3,1]; x.[4,1]; x.[5,1]; x.[6,1]; x.[7,1]; x.[8,1]; x.[9,1]]);
                   (mk_distinct ctx [x.[1,2]; x.[2,2]; x.[3,2]; x.[4,2]; x.[5,2]; x.[6,2]; x.[7,2]; x.[8,2]; x.[9,2]]);
