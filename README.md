@@ -21,9 +21,9 @@ You can use the Z3 dlls in /platform/{windows,osx-mono}. Or get/build from the s
 1. Visual Studio 2013 will already give you F# (fsi, fsc).
 
 2. You can get Z3 in several ways:
-		1. If you trust me, just pick up the dlls from platform/windows.
-		2. If you trust the Z3 guys, download the Windows binaries from http://z3.codeplex.com. 
-		3. If you want to build yourself, download the source from http://z3.codeplex.com and build it yourself. 
+  1. If you trust me, just pick up the dlls from platform/windows.
+  2. If you trust the Z3 guys, download the Windows binaries from http://z3.codeplex.com. 
+  3. If you want to build yourself, download the source from http://z3.codeplex.com and build it yourself. 
 	
 	
 ### Using Mono (for Linux and MacOS)
