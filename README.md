@@ -25,9 +25,9 @@ Visual Studio 2013 will already give you F# (fsi, fsc).
 #### Z3 
 
 You can get Z3 in several ways:
-1. If you trust me, just pick up the dlls from platform/windows.
-2. If you trust the Z3 guys, download the Windows binaries from http://z3.codeplex.com. 
-3. If you want to build yourself, download the source from http://z3.codeplex.com and build it yourself. 
+If you trust me, just pick up the dlls from platform/windows;
+If you trust the Z3 guys, download the Windows binaries from http://z3.codeplex.com;
+If you want to build yourself, download the source from http://z3.codeplex.com and build it yourself. 
 	
 	
 ### Using Mono (for Linux and MacOS)
@@ -54,11 +54,10 @@ a Terminal -- if it's not there yet, OS X will offer to install XCode).
 
 #### Z3  
 
-1. If you trust me, you can just use the dlls in platform/osx-mono;
+You need the Z3 dll and it's .NET wrapper. If you trust me, you can just use the dlls in platform/osx-mono.
+If you want to build it yourself, read on in this section. 
 
-2. Or else you can build z3 youself 
-		
-For this, get z3 sources for z3/unstable (4.3.2 is known to work) from http://z3.codeplex.com/. 
+First, get the Z3 sources for z3/unstable (4.3.2 is known to work) from http://z3.codeplex.com/. 
 
 ```
 $ export Z3DIR=/path/to/z3/
@@ -74,7 +73,7 @@ On Linux, this suffices:
       $ popd && popd
 ```
 
-On OS X, you need to enforce a 32bit build (for compatibility with Mono):
+On OS X, you need to enforce a 32-bit build for compatibility with Mono:
 
 ```
       $ pushd "$Z3DIR"
@@ -96,10 +95,9 @@ Now build the .NET bindings for z3:
 
 
 ### Rock n'roll
-
-Now we're ready. 
-
-Here, we're starting fsharpi on OS X and assuming the Z3 dlls are in ../platform/osx-mono. Your setup might be different.
+ 
+Here, we're starting fsharpi on OS X and assuming the Z3 dlls are in ../platform/osx-mono. 
+Where-every your dlls are, make sure both the native dll and it's .NET wrapper are in the same directory. 
 
 ```
 $ fsharpi -I:../platform/osx-mono -r:Microsoft.Z3
