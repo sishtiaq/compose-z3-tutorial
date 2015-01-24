@@ -6,14 +6,10 @@ Intro to Z3 via F#.
 
 ## What you need to have ready
 
-I'll assume you already have a fully-fledged dev machine 
-(Windows + Visual Studio 2013, OS X with XCode dev tools, Linux with g++, etc). 
-
 We will be using Z3 from F#'s repl (fsi on Windows, fsharpi on Mac OS X and Linux). 
-You now need to have both F# and Z3, with it's .NET bindings, installed on your machine: 
-
-
-You can use the Z3 dlls in /platform/{windows,osx-mono}. Or get/build from the source:
+Starting from a fully-fledged dev machine 
+(Windows + Visual Studio 2013, OS X with XCode dev tools, Linux with g++, etc), 
+you now need to have both F# and Z3, with it's .NET bindings, installed on your machine: 
 
 
 ### Using Windows
@@ -25,16 +21,17 @@ Visual Studio 2013 will already give you F# (fsi, fsc).
 #### Z3 
 
 You can get Z3 in several ways:
-If you trust me, just pick up the dlls from platform/windows;
-If you trust the Z3 guys, download the Windows binaries from http://z3.codeplex.com;
-If you want to build yourself, download the source from http://z3.codeplex.com and build it yourself. 
+Either pick up the dlls from platform/windows; or download them from http://z3.codeplex.com;
+If you want to build yourself, download the source from http://z3.codeplex.com and follow the instructions from there to build it yourself. 
 	
 	
 ### Using Mono (for Linux and MacOS)
 
+(Thank you to Marc Brockschmidt for these instrutions, in particular for his perl wisdom.)  
+
 #### Compiler etc 
 
-Install software needed for the build process:
+Install the software needed for the build process:
 
   * g++
   * python
@@ -54,16 +51,17 @@ a Terminal -- if it's not there yet, OS X will offer to install XCode).
 
 #### Z3  
 
-You need the Z3 dll and it's .NET wrapper. If you trust me, you can just use the dlls in platform/osx-mono.
-If you want to build it yourself, read on in this section. 
+You need the Z3 dll and it's .NET wrapper. You can either get these pre-built from platform/osx-mono, and skip this section.
+If you want to build it yourself, read on. 
 
 First, get the Z3 sources for z3/unstable (4.3.2 is known to work) from http://z3.codeplex.com/. 
+Set `Z3DIR` to point to where you download the source:
 
 ```
 $ export Z3DIR=/path/to/z3/
 ```
 
-On Linux, this suffices:
+On Linux, this suffices to build:
 
 ```
       $ pushd "$Z3DIR"
@@ -83,9 +81,8 @@ On OS X, you need to enforce a 32-bit build for compatibility with Mono:
       $ make
       $ popd && popd
 ```
-(Thank you to Marc Brockschmidt for the above perl.) 
 
-Now build the .NET bindings for z3:
+After you've got Z3 built, then build the .NET bindings for z3:
 
 ```
       $ pushd "$Z3DIR/src/api/dotnet/"
@@ -97,7 +94,7 @@ Now build the .NET bindings for z3:
 
 ### Rock n'roll
  
-Here, we're starting fsharpi on OS X and assuming the Z3 dlls are in ../platform/osx-mono. 
+Here, we're starting fsharpi on OS X. The -I flag is assuming the Z3 dlls are in ../platform/osx-mono. 
 Where-every your dlls are, make sure both the native dll and it's .NET wrapper are in the same directory. 
 
 ```
