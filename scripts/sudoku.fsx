@@ -77,10 +77,7 @@ let init_grid (ctx:Context) (x:IntExpr[,]) (s:string) =
     let eqs = List.map
                 (fun (row,col,data) -> mk_eq ctx x.[row,col] (mk_int ctx data))
                 items
-
-    let aa = mk_ands ctx eqs
-    printf "%O" aa 
-    aa
+    mk_ands ctx eqs
 
 // 1 <= x_{i,j} <= 9
 let range ctx (x:IntExpr[,]) =        
