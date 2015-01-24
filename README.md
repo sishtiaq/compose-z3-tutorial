@@ -2,7 +2,11 @@
 # Z3 tutorial @ Compose Conference 
 
 ## Intro 
-Intro to Z3 via F#.
+
+I've built several static analysis tools in F# and OCaml that pass the heavy arithmetic and logical work to the SMT solver Z3. 
+In this tutorial, I want to show you how to use Z3 from your favourite functional programming language (I'll be running
+with F#, but you can ride along in OCaml too). We'll write small programs to solve puzzles like Sudoku, algebra problems, etc.
+The emphasis will be on how to represent your problem to Z3. We'll code as we go.
 
 ## What you need to have ready
 
