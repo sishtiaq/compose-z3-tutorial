@@ -1,5 +1,5 @@
 
-# Compose Conference Z3 tutorial
+# Z3 tutorial @ Compose Conference 
 
 ## Intro 
 Intro to Z3 via F#.
