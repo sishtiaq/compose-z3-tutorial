@@ -73,106 +73,108 @@ let range ctx (x:IntExpr[,]) =
                   r x.[0,8]; r x.[1,8]; r x.[2,8]; r x.[3,8]; r x.[4,8]; r x.[5,8]; r x.[6,8]; r x.[7,8]; r x.[8,8] ]
 // x11 # x21 # ... # x91        
 let row_distinct ctx (x:IntExpr[,]) = 
-    mk_ands ctx [ (mk_distinct ctx [x.[1,1]; x.[2,1]; x.[3,1]; x.[4,1]; x.[5,1]; x.[6,1]; x.[7,1]; x.[8,1]; x.[9,1]]);
-                  (mk_distinct ctx [x.[1,2]; x.[2,2]; x.[3,2]; x.[4,2]; x.[5,2]; x.[6,2]; x.[7,2]; x.[8,2]; x.[9,2]]);
-                  (mk_distinct ctx [x.[1,3]; x.[2,3]; x.[3,3]; x.[4,3]; x.[5,3]; x.[6,3]; x.[7,3]; x.[8,3]; x.[9,3]]);
-                  (mk_distinct ctx [x.[1,4]; x.[2,4]; x.[3,4]; x.[4,4]; x.[5,4]; x.[6,4]; x.[7,4]; x.[8,4]; x.[9,4]]);
-                  (mk_distinct ctx [x.[1,5]; x.[2,5]; x.[3,5]; x.[4,5]; x.[5,5]; x.[6,5]; x.[7,5]; x.[8,5]; x.[9,5]]);
-                  (mk_distinct ctx [x.[1,6]; x.[2,6]; x.[3,6]; x.[4,6]; x.[5,6]; x.[6,6]; x.[7,6]; x.[8,6]; x.[9,6]]);
-                  (mk_distinct ctx [x.[1,7]; x.[2,7]; x.[3,7]; x.[4,7]; x.[5,7]; x.[6,7]; x.[7,7]; x.[8,7]; x.[9,7]]);
-                  (mk_distinct ctx [x.[1,8]; x.[2,8]; x.[3,8]; x.[4,8]; x.[5,8]; x.[6,8]; x.[7,8]; x.[8,8]; x.[9,8]]);
-                  (mk_distinct ctx [x.[1,9]; x.[2,9]; x.[3,9]; x.[4,9]; x.[5,9]; x.[6,9]; x.[7,9]; x.[8,9]; x.[9,9]]) ]
+    mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[1,0]; x.[2,0]; x.[3,0]; x.[4,0]; x.[5,0]; x.[6,0]; x.[7,0]; x.[8,0]]);
+                  (mk_distinct ctx [x.[0,1]; x.[1,1]; x.[2,1]; x.[3,1]; x.[4,1]; x.[5,1]; x.[6,1]; x.[7,1]; x.[8,1]]);
+                  (mk_distinct ctx [x.[0,2]; x.[1,2]; x.[2,2]; x.[3,2]; x.[4,2]; x.[5,2]; x.[6,2]; x.[7,2]; x.[8,2]]);
+                  (mk_distinct ctx [x.[0,3]; x.[1,3]; x.[2,3]; x.[3,3]; x.[4,3]; x.[5,3]; x.[6,3]; x.[7,3]; x.[8,3]]);
+                  (mk_distinct ctx [x.[0,4]; x.[1,4]; x.[2,4]; x.[3,4]; x.[4,4]; x.[5,4]; x.[6,4]; x.[7,4]; x.[8,4]]);
+                  (mk_distinct ctx [x.[0,5]; x.[1,5]; x.[2,5]; x.[3,5]; x.[4,5]; x.[5,5]; x.[6,5]; x.[7,5]; x.[8,5]]);
+                  (mk_distinct ctx [x.[0,6]; x.[1,6]; x.[2,6]; x.[3,6]; x.[4,6]; x.[5,6]; x.[6,6]; x.[7,6]; x.[8,6]]);
+                  (mk_distinct ctx [x.[0,7]; x.[1,7]; x.[2,7]; x.[3,7]; x.[4,7]; x.[5,7]; x.[6,7]; x.[7,7]; x.[8,7]]);
+                  (mk_distinct ctx [x.[0,8]; x.[1,8]; x.[2,8]; x.[3,8]; x.[4,8]; x.[5,8]; x.[6,8]; x.[7,8]; x.[8,8]]) ]
 // x11 # x12 # ... # x19
 let col_distinct ctx (x:IntExpr[,]) = 
-    mk_ands ctx [ (mk_distinct ctx [x.[1,1]; x.[1,2]; x.[1,3]; x.[1,4]; x.[1,5]; x.[1,6]; x.[1,7]; x.[1,8]; x.[1,9]]);
-                  (mk_distinct ctx [x.[2,1]; x.[2,2]; x.[2,3]; x.[2,4]; x.[2,5]; x.[2,6]; x.[2,7]; x.[2,8]; x.[2,9]]);
-                  (mk_distinct ctx [x.[3,1]; x.[3,2]; x.[3,3]; x.[3,4]; x.[3,5]; x.[3,6]; x.[3,7]; x.[3,8]; x.[3,9]]);
-                  (mk_distinct ctx [x.[4,1]; x.[4,2]; x.[4,3]; x.[4,4]; x.[4,5]; x.[4,6]; x.[4,7]; x.[4,8]; x.[4,9]]);
-                  (mk_distinct ctx [x.[5,1]; x.[5,2]; x.[5,3]; x.[5,4]; x.[5,5]; x.[5,6]; x.[5,7]; x.[5,8]; x.[5,9]]);
-                  (mk_distinct ctx [x.[6,1]; x.[6,2]; x.[6,3]; x.[6,4]; x.[6,5]; x.[6,6]; x.[6,7]; x.[6,8]; x.[6,9]]);
-                  (mk_distinct ctx [x.[7,1]; x.[7,2]; x.[7,3]; x.[7,4]; x.[7,5]; x.[7,6]; x.[7,7]; x.[7,8]; x.[7,9]]);
-                  (mk_distinct ctx [x.[8,1]; x.[8,2]; x.[8,3]; x.[8,4]; x.[8,5]; x.[8,6]; x.[8,7]; x.[8,8]; x.[8,9]]);
-                  (mk_distinct ctx [x.[9,1]; x.[9,2]; x.[9,3]; x.[9,4]; x.[9,5]; x.[9,6]; x.[9,7]; x.[9,8]; x.[9,9]]) ]
+    mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[0,1]; x.[0,2]; x.[0,3]; x.[0,4]; x.[0,5]; x.[0,6]; x.[0,7]; x.[0,8]]);
+                  (mk_distinct ctx [x.[1,0]; x.[1,1]; x.[1,2]; x.[1,3]; x.[1,4]; x.[1,5]; x.[1,6]; x.[1,7]; x.[1,8]]);
+                  (mk_distinct ctx [x.[2,0]; x.[2,1]; x.[2,2]; x.[2,3]; x.[2,4]; x.[2,5]; x.[2,6]; x.[2,7]; x.[2,8]]);
+                  (mk_distinct ctx [x.[3,0]; x.[3,1]; x.[3,2]; x.[3,3]; x.[3,4]; x.[3,5]; x.[3,6]; x.[3,7]; x.[3,8]]);
+                  (mk_distinct ctx [x.[4,0]; x.[4,1]; x.[4,2]; x.[4,3]; x.[4,4]; x.[4,5]; x.[4,6]; x.[4,7]; x.[4,8]]);
+                  (mk_distinct ctx [x.[5,0]; x.[5,1]; x.[5,2]; x.[5,3]; x.[5,4]; x.[5,5]; x.[5,6]; x.[5,7]; x.[5,8]]);
+                  (mk_distinct ctx [x.[6,0]; x.[6,1]; x.[6,2]; x.[6,3]; x.[6,4]; x.[6,5]; x.[6,6]; x.[6,7]; x.[6,8]]);
+                  (mk_distinct ctx [x.[7,0]; x.[7,1]; x.[7,2]; x.[7,3]; x.[7,4]; x.[7,5]; x.[7,6]; x.[7,7]; x.[7,8]]);
+                  (mk_distinct ctx [x.[8,0]; x.[8,1]; x.[8,2]; x.[8,3]; x.[8,4]; x.[8,5]; x.[8,6]; x.[8,7]; x.[8,8]]) ]
 
 let subgrid_distinct ctx (x:IntExpr[,]) = 
-    mk_ands ctx [ (mk_distinct ctx [x.[1,1]; x.[2,1]; x.[3,1];    //X--
-                                    x.[1,2]; x.[2,2]; x.[3,2];    //---
-                                    x.[1,3]; x.[2,3]; x.[3,3];]); //---
-                  (mk_distinct ctx [x.[4,1]; x.[5,1]; x.[6,1];    //---
-                                    x.[4,2]; x.[5,2]; x.[6,2];    //X--
-                                    x.[4,3]; x.[5,3]; x.[6,3]]);  //---
-                  (mk_distinct ctx [x.[7,1]; x.[8,1]; x.[9,1];    //---
-                                    x.[7,2]; x.[8,2]; x.[9,2];    //---
-                                    x.[7,3]; x.[8,3]; x.[9,3]]);  //X--
-                  (mk_distinct ctx [x.[1,4]; x.[2,4]; x.[3,4];
-                                    x.[1,5]; x.[2,5]; x.[3,5];
-                                    x.[1,6]; x.[2,6]; x.[3,6]]); 
-                  (mk_distinct ctx [x.[4,4]; x.[5,4]; x.[6,4];
-                                    x.[4,5]; x.[5,5]; x.[6,5];
-                                    x.[4,6]; x.[5,6]; x.[6,6]]); 
-                  (mk_distinct ctx [x.[7,4]; x.[8,4]; x.[9,4];
-                                    x.[7,5]; x.[8,5]; x.[9,5];
-                                    x.[7,6]; x.[8,6]; x.[9,6]]); 
-                  (mk_distinct ctx [x.[1,7]; x.[2,7]; x.[3,7];
-                                    x.[1,8]; x.[2,8]; x.[3,8];
-                                    x.[1,9]; x.[2,9]; x.[3,9]]); 
-                  (mk_distinct ctx [x.[4,7]; x.[5,7]; x.[6,7];
-                                    x.[4,8]; x.[5,8]; x.[6,8];
-                                    x.[4,9]; x.[5,9]; x.[6,9]]); 
-                  (mk_distinct ctx [x.[7,7]; x.[8,7]; x.[9,7];
-                                    x.[7,8]; x.[8,8]; x.[9,8];
-                                    x.[7,9]; x.[8,9]; x.[9,9]]) ]
+    mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[0,1]; x.[0,2];    //X--
+                                    x.[1,0]; x.[1,1]; x.[1,2];    //---
+                                    x.[2,0]; x.[2,1]; x.[2,2];]); //---
+                  (mk_distinct ctx [x.[3,0]; x.[3,1]; x.[3,2];    //---
+                                    x.[4,0]; x.[4,1]; x.[4,2];    //X--
+                                    x.[5,0]; x.[5,1]; x.[5,2];]);  //---
+                  (mk_distinct ctx [x.[6,0]; x.[6,1]; x.[6,2];    //---
+                                    x.[7,0]; x.[7,1]; x.[7,2];    //---
+                                    x.[8,0]; x.[8,1]; x.[8,2];]);  //X--
+                //
+                  (mk_distinct ctx [x.[0,3]; x.[0,4]; x.[0,5];
+                                    x.[1,3]; x.[1,4]; x.[1,5];
+                                    x.[2,3]; x.[2,4]; x.[2,5];]); 
+                  (mk_distinct ctx [x.[3,3]; x.[3,4]; x.[3,5];
+                                    x.[4,3]; x.[4,4]; x.[4,5];
+                                    x.[5,3]; x.[5,4]; x.[5,5];]); 
+                  (mk_distinct ctx [x.[6,3]; x.[6,4]; x.[6,5];
+                                    x.[7,3]; x.[7,4]; x.[7,5];
+                                    x.[8,3]; x.[8,4]; x.[8,5];]); 
+                //
+                  (mk_distinct ctx [x.[0,6]; x.[0,7]; x.[0,8];
+                                    x.[1,6]; x.[1,7]; x.[1,8];
+                                    x.[2,6]; x.[2,7]; x.[2,8]]); 
+                  (mk_distinct ctx [x.[3,6]; x.[3,7]; x.[3,8];
+                                    x.[4,6]; x.[4,7]; x.[4,8];
+                                    x.[5,6]; x.[5,7]; x.[5,8]]); 
+                  (mk_distinct ctx [x.[6,6]; x.[6,7]; x.[6,8];
+                                    x.[7,6]; x.[7,7]; x.[7,8];
+                                    x.[8,6]; x.[8,7]; x.[8,8]]) ]
 // Known values
 let this_grid ctx (x:IntExpr[,]) = 
-    mk_ands ctx [ (mk_eq ctx x.[1,3] (mk_int ctx 2));
-                  (mk_eq ctx x.[1,6] (mk_int ctx 1));
-                  (mk_eq ctx x.[1,8] (mk_int ctx 6));
-                  (mk_eq ctx x.[2,3] (mk_int ctx 7));
-                  (mk_eq ctx x.[2,6] (mk_int ctx 4));
-                  (mk_eq ctx x.[3,1] (mk_int ctx 5));
-                  (mk_eq ctx x.[3,7] (mk_int ctx 9));
-                  (mk_eq ctx x.[4,2] (mk_int ctx 1));
-                  (mk_eq ctx x.[4,4] (mk_int ctx 3));
-                  (mk_eq ctx x.[5,1] (mk_int ctx 8));
-                  (mk_eq ctx x.[5,5] (mk_int ctx 5));
-                  (mk_eq ctx x.[5,9] (mk_int ctx 4));
-                  (mk_eq ctx x.[6,6] (mk_int ctx 6));
-                  (mk_eq ctx x.[6,8] (mk_int ctx 2));
-                  (mk_eq ctx x.[7,3] (mk_int ctx 6));
-                  (mk_eq ctx x.[7,9] (mk_int ctx 7));
-                  (mk_eq ctx x.[8,4] (mk_int ctx 8));
-                  (mk_eq ctx x.[8,7] (mk_int ctx 3));
-                  (mk_eq ctx x.[9,2] (mk_int ctx 4));
-                  (mk_eq ctx x.[9,4] (mk_int ctx 9));
-                  (mk_eq ctx x.[9,7] (mk_int ctx 2)) ]
+    mk_ands ctx [ (mk_eq ctx x.[0,2] (mk_int ctx 2));
+                  (mk_eq ctx x.[0,5] (mk_int ctx 1));
+                  (mk_eq ctx x.[0,7] (mk_int ctx 6));
+                  (mk_eq ctx x.[1,2] (mk_int ctx 7));
+                  (mk_eq ctx x.[1,5] (mk_int ctx 4));
+                  (mk_eq ctx x.[2,0] (mk_int ctx 5));
+                  (mk_eq ctx x.[2,6] (mk_int ctx 9));
+                  (mk_eq ctx x.[3,1] (mk_int ctx 1));
+                  (mk_eq ctx x.[3,3] (mk_int ctx 3));
+                  (mk_eq ctx x.[4,0] (mk_int ctx 8));
+                  (mk_eq ctx x.[4,4] (mk_int ctx 5));
+                  (mk_eq ctx x.[4,8] (mk_int ctx 4));
+                  (mk_eq ctx x.[5,5] (mk_int ctx 6));
+                  (mk_eq ctx x.[5,7] (mk_int ctx 2));
+                  (mk_eq ctx x.[6,2] (mk_int ctx 6));
+                  (mk_eq ctx x.[6,8] (mk_int ctx 7));
+                  (mk_eq ctx x.[7,3] (mk_int ctx 8));
+                  (mk_eq ctx x.[7,6] (mk_int ctx 3));
+                  (mk_eq ctx x.[8,1] (mk_int ctx 4));
+                  (mk_eq ctx x.[8,3] (mk_int ctx 9));
+                  (mk_eq ctx x.[8,6] (mk_int ctx 2)) ]
 
+let main _ = 
+    let g0 = mk_grid ctx 
+    let solver = ctx.MkSolver()
+    solver.Add (mk_ands ctx [range ctx g0; row_distinct ctx g0; col_distinct ctx g0; subgrid_distinct ctx g0; this_grid ctx g0])
 
-let g0 = mk_grid ctx 
-let solver = ctx.MkSolver()
-solver.Add (mk_ands ctx [range ctx g0; row_distinct ctx g0; col_distinct ctx g0; subgrid_distinct ctx g0; this_grid ctx g0])
-
-match solver.Check([||]) with
-| Status.UNSATISFIABLE -> 
-    Printf.printf "valid"
-| Status.SATISFIABLE -> 
-    Printf.printfn "Sat."                
-//    let m = solver.Model
-//    printf 
-//        "%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n" 
-//        (m.ConstInterp(x11)) (m.ConstInterp(x21)) (m.ConstInterp(x31)) (m.ConstInterp(x41)) (m.ConstInterp(x51)) (m.ConstInterp(x61)) (m.ConstInterp(x71)) (m.ConstInterp(x81)) (m.ConstInterp(x91))
-//        (m.ConstInterp(x12)) (m.ConstInterp(x22)) (m.ConstInterp(x32)) (m.ConstInterp(x42)) (m.ConstInterp(x52)) (m.ConstInterp(x62)) (m.ConstInterp(x72)) (m.ConstInterp(x82)) (m.ConstInterp(x92))
-//        (m.ConstInterp(x13)) (m.ConstInterp(x23)) (m.ConstInterp(x33)) (m.ConstInterp(x43)) (m.ConstInterp(x53)) (m.ConstInterp(x63)) (m.ConstInterp(x73)) (m.ConstInterp(x83)) (m.ConstInterp(x93))
-//        (m.ConstInterp(x14)) (m.ConstInterp(x24)) (m.ConstInterp(x34)) (m.ConstInterp(x44)) (m.ConstInterp(x54)) (m.ConstInterp(x64)) (m.ConstInterp(x74)) (m.ConstInterp(x84)) (m.ConstInterp(x94))
-//        (m.ConstInterp(x15)) (m.ConstInterp(x25)) (m.ConstInterp(x35)) (m.ConstInterp(x45)) (m.ConstInterp(x55)) (m.ConstInterp(x65)) (m.ConstInterp(x75)) (m.ConstInterp(x85)) (m.ConstInterp(x95))
-//        (m.ConstInterp(x16)) (m.ConstInterp(x26)) (m.ConstInterp(x36)) (m.ConstInterp(x46)) (m.ConstInterp(x56)) (m.ConstInterp(x66)) (m.ConstInterp(x76)) (m.ConstInterp(x86)) (m.ConstInterp(x96))
-//        (m.ConstInterp(x17)) (m.ConstInterp(x27)) (m.ConstInterp(x37)) (m.ConstInterp(x47)) (m.ConstInterp(x57)) (m.ConstInterp(x67)) (m.ConstInterp(x77)) (m.ConstInterp(x87)) (m.ConstInterp(x97))
-//        (m.ConstInterp(x18)) (m.ConstInterp(x28)) (m.ConstInterp(x38)) (m.ConstInterp(x48)) (m.ConstInterp(x58)) (m.ConstInterp(x68)) (m.ConstInterp(x78)) (m.ConstInterp(x88)) (m.ConstInterp(x98))
-//        (m.ConstInterp(x19)) (m.ConstInterp(x29)) (m.ConstInterp(x39)) (m.ConstInterp(x49)) (m.ConstInterp(x59)) (m.ConstInterp(x69)) (m.ConstInterp(x79)) (m.ConstInterp(x89)) (m.ConstInterp(x99))                 
+    match solver.Check([||]) with
+    | Status.UNSATISFIABLE -> 
+        Printf.printf "valid"
+    | Status.SATISFIABLE -> 
+        Printf.printfn "Sat."                
+        let m = solver.Model
+        printf 
+            "%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n%O %O %O %O %O %O %O %O %O\n" 
+            (m.ConstInterp(g0.[0,0])) (m.ConstInterp(g0.[1,0])) (m.ConstInterp(g0.[2,0])) (m.ConstInterp(g0.[3,0])) (m.ConstInterp(g0.[4,0])) (m.ConstInterp(g0.[5,0])) (m.ConstInterp(g0.[6,0])) (m.ConstInterp(g0.[7,0])) (m.ConstInterp(g0.[8,0]))
+            (m.ConstInterp(g0.[0,1])) (m.ConstInterp(g0.[1,1])) (m.ConstInterp(g0.[2,1])) (m.ConstInterp(g0.[3,1])) (m.ConstInterp(g0.[4,1])) (m.ConstInterp(g0.[5,1])) (m.ConstInterp(g0.[6,1])) (m.ConstInterp(g0.[7,1])) (m.ConstInterp(g0.[8,1]))
+            (m.ConstInterp(g0.[0,2])) (m.ConstInterp(g0.[1,2])) (m.ConstInterp(g0.[2,2])) (m.ConstInterp(g0.[3,2])) (m.ConstInterp(g0.[4,2])) (m.ConstInterp(g0.[5,2])) (m.ConstInterp(g0.[6,2])) (m.ConstInterp(g0.[7,2])) (m.ConstInterp(g0.[8,2]))
+            (m.ConstInterp(g0.[0,3])) (m.ConstInterp(g0.[1,3])) (m.ConstInterp(g0.[2,3])) (m.ConstInterp(g0.[3,3])) (m.ConstInterp(g0.[4,3])) (m.ConstInterp(g0.[5,3])) (m.ConstInterp(g0.[6,3])) (m.ConstInterp(g0.[7,3])) (m.ConstInterp(g0.[8,3]))
+            (m.ConstInterp(g0.[0,4])) (m.ConstInterp(g0.[1,4])) (m.ConstInterp(g0.[2,4])) (m.ConstInterp(g0.[3,4])) (m.ConstInterp(g0.[4,4])) (m.ConstInterp(g0.[5,4])) (m.ConstInterp(g0.[6,4])) (m.ConstInterp(g0.[7,4])) (m.ConstInterp(g0.[8,4]))
+            (m.ConstInterp(g0.[0,5])) (m.ConstInterp(g0.[1,5])) (m.ConstInterp(g0.[2,5])) (m.ConstInterp(g0.[3,5])) (m.ConstInterp(g0.[4,5])) (m.ConstInterp(g0.[5,5])) (m.ConstInterp(g0.[6,5])) (m.ConstInterp(g0.[7,5])) (m.ConstInterp(g0.[8,5]))
+            (m.ConstInterp(g0.[0,6])) (m.ConstInterp(g0.[1,6])) (m.ConstInterp(g0.[2,6])) (m.ConstInterp(g0.[3,6])) (m.ConstInterp(g0.[4,6])) (m.ConstInterp(g0.[5,6])) (m.ConstInterp(g0.[6,6])) (m.ConstInterp(g0.[7,6])) (m.ConstInterp(g0.[8,6]))
+            (m.ConstInterp(g0.[0,7])) (m.ConstInterp(g0.[1,7])) (m.ConstInterp(g0.[2,7])) (m.ConstInterp(g0.[3,7])) (m.ConstInterp(g0.[4,7])) (m.ConstInterp(g0.[5,7])) (m.ConstInterp(g0.[6,7])) (m.ConstInterp(g0.[7,7])) (m.ConstInterp(g0.[8,7]))
+            (m.ConstInterp(g0.[0,8])) (m.ConstInterp(g0.[1,8])) (m.ConstInterp(g0.[2,8])) (m.ConstInterp(g0.[3,8])) (m.ConstInterp(g0.[4,8])) (m.ConstInterp(g0.[5,8])) (m.ConstInterp(g0.[6,8])) (m.ConstInterp(g0.[7,8])) (m.ConstInterp(g0.[8,8]))
         
-| Status.UNKNOWN -> 
-    Printf.printf "unknown"
-| _ -> Printf.printf "x"
+    | Status.UNKNOWN -> 
+        Printf.printf "unknown"
+    | _ -> Printf.printf "x"
     
-ctx.Dispose ()
+    ctx.Dispose ()
 
 
