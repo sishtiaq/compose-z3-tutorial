@@ -1,6 +1,6 @@
 ﻿
-#I @"..\\platform\\windows"
-#r "Microsoft.Z3.dll"
+//#I @"..\\platform\\windows"
+//#r "Microsoft.Z3.dll"
 
 open Microsoft.Z3 
 
@@ -179,4 +179,4 @@ let main _ =
     
     ctx.Dispose ()
 
-
+main ()
