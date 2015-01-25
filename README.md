@@ -95,7 +95,7 @@ After you've got Z3 built, then build the .NET bindings for z3:
 	$ popd
 ```
 
-Copy the z3 binary and it's .NET wrapper over to a directory where you want to run from, like ~/z3bin
+Copy the z3 binary and it's .NET wrapper over to a directory where you want to run from, like ~/my-z3-bin
 ```
 	cp $Z3DIR/src/api/dotnet/obj/Debug/Microsoft.Z3.* ~/my-z3-bin
 	cp $Z3DIR/build/libz3.* ~/my-z3-bin
