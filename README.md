@@ -62,44 +62,49 @@ First, get the Z3 sources for z3/unstable (4.3.2 is known to work) from http://z
 Set `Z3DIR` to point to where you download the source:
 
 ```
-$ export Z3DIR=/path/to/z3/
+	$ export Z3DIR=/path/to/z3/
 ```
 
 On Linux, this suffices to build:
 
 ```
-      $ pushd "$Z3DIR"
-      $ ./configure
-      $ pushd "$Z3DIR/build"
-      $ make
-      $ popd && popd
+	$ pushd "$Z3DIR"
+	$ ./configure
+	$ pushd "$Z3DIR/build"
+	$ make
+	$ popd && popd
 ```
 
 On OS X, you need to enforce a 32-bit build for compatibility with Mono:
 
 ```
-      $ pushd "$Z3DIR"
-      $ ./configure
-      $ pushd "$Z3DIR/build"
-      $ perl -i -pe 's/-D_AMD64_/-arch i386/; s/LINK_EXTRA_FLAGS=/$&-arch i386 /' config.mk
-      $ make
-      $ popd && popd
+	$ pushd "$Z3DIR"
+	$ ./configure
+	$ pushd "$Z3DIR/build"
+	$ perl -i -pe 's/-D_AMD64_/-arch i386/; s/LINK_EXTRA_FLAGS=/$&-arch i386 /' config.mk
+	$ make
+	$ popd && popd
 ```
 
 After you've got Z3 built, then build the .NET bindings for z3:
 
 ```
-      $ pushd "$Z3DIR/src/api/dotnet/"
-      $ echo -e '<configuration>\n <dllmap dll="libz3.dll" target="libz3.dylib" os="osx"/>\n <dllmap dll="libz3.so" target="libz3.dylib" os="linux"/>\n</configuration>\n' > Microsoft.Z3.config
-      $ xbuild Microsoft.Z3.csproj
-      $ popd
+	$ pushd "$Z3DIR/src/api/dotnet/"
+	$ echo -e '<configuration>\n <dllmap dll="libz3.dll" target="libz3.dylib" os="osx"/>\n <dllmap dll="libz3.so" target="libz3.dylib" os="linux"/>\n</configuration>\n' > Microsoft.Z3.config
+	$ xbuild Microsoft.Z3.csproj
+	$ popd
 ```
 
+Copy the z3 binary and it's .NET wrapper over to a directory where you want to run from, like ~/z3bin
+```
+	cp $Z3DIR/src/api/dotnet/obj/Debug/Microsoft.Z3.* ~/my-z3-bin
+	cp $Z3DIR/build/libz3.* ~/my-z3-bin
+```
 
 ### Rock n'roll
  
 Here, we're starting fsharpi on OS X. The -I flag is assuming the Z3 dlls are in ../platform/osx-mono. 
-Where-every your dlls are, make sure both the native dll and it's .NET wrapper are in the same directory. 
+Where-every your dlls are (~/my-z3-bin), make sure both the native z3 dll and it's .NET wrapper are in the same directory. 
 
 ```
 $ fsharpi -I:../platform/osx-mono -r:Microsoft.Z3
