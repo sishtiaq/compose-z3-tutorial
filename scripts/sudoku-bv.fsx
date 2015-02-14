@@ -1,42 +1,45 @@
-﻿
+﻿// bitvector version of sudoku.fsx
+
 #I @"..\\platform\\windows"
 #r "Microsoft.Z3.dll"
 
 open Microsoft.Z3 
 
+let bv_size = (uint32)8
 //
 // Convenience wrappers for Z3 
 //
 
-// int sort
-let mk_int_var (z3:Context) (name:string) = 
-    z3.MkIntConst(name)
+// bv sort
+let mk_bv_var (z3:Context) (name:string) = 
+    z3.MkBVConst(name,bv_size)
 
-let mk_int (z3:Context) (i:int) = 
-    z3.MkInt(i)
+let mk_bv (z3:Context) (i:int) = 
+    z3.MkBV(i,bv_size)
 
 // arith expr
-let mk_ge (z3:Context) (l:ArithExpr) (r:ArithExpr) = 
-    z3.MkGe (l,r)
+let mk_ge (z3:Context) (l) (r) = 
+    z3.MkBVUGE (l,r)
 
-let mk_le (z3:Context) (l:ArithExpr) (r:ArithExpr) = 
-    z3.MkLe (l,r)
+let mk_le (z3:Context) l r = 
+    z3.MkBVULE (l,r)
 
 // bool expr 
-let mk_eq (z3:Context) (l:IntExpr) (r:IntExpr) = 
+let mk_eq (z3:Context) l r = 
     z3.MkEq(l,r)
 
 let mk_true (z3:Context) = 
-    z3.MkTrue ()
+    z3.MkTrue()
 
-let mk_and (z3:Context) (l:BoolExpr) (r:BoolExpr) = 
-    z3.MkAnd ([|l;r|])
+let mk_and (z3:Context) l r = 
+    z3.MkAnd([|l; r|])
 
 let mk_ands (z3:Context) (tt:BoolExpr list) = 
     z3.MkAnd(List.toArray tt)
-
+        
 // m <= x <= n
-let m_le_x_le_n (z3:Context) (m:ArithExpr) (x:ArithExpr) (n:ArithExpr) = 
+// SI: replace by disjunction
+let m_le_x_le_n (z3:Context) m x n = 
     mk_and z3 (mk_le z3 m x) (mk_le z3 x n)
 
 let mk_distinct (z3:Context) (tt:Expr list) = 
@@ -46,17 +49,17 @@ let mk_distinct (z3:Context) (tt:Expr list) =
 // 
 // The sudoku grid (mutable 2D array) and the constraints on it.
 //
-type sudoku_grid = IntExpr[,]
+type sudoku_grid = BitVecExpr[,]
 
 // grid ctor
 let mk_grid ctx = 
-    let x = Array2D.init 9 9 (fun i j -> mk_int_var ctx ("x"+(string)i+(string)j)) 
+    let x = Array2D.init 9 9 (fun i j -> mk_bv_var ctx ("x"+(string)i+(string)j)) 
     x
 
 // grid init
 open System.Collections.Generic
 
-let init_grid (ctx:Context) (x:IntExpr[,]) (s:string) = 
+let init_grid (ctx:Context) (x:BitVecExpr[,]) (s:string) = 
 
     let parse (s:string)  = 
         let ht = ref []
@@ -75,13 +78,13 @@ let init_grid (ctx:Context) (x:IntExpr[,]) (s:string) =
 
     let items = parse s
     let eqs = List.map
-                (fun (row,col,data) -> mk_eq ctx x.[row,col] (mk_int ctx data))
+                (fun (row,col,data) -> mk_eq ctx x.[row,col] (mk_bv ctx data))
                 items
     mk_ands ctx eqs
 
 // 1 <= x_{i,j} <= 9
-let range ctx (x:IntExpr[,]) =        
-    let r x = m_le_x_le_n ctx (mk_int ctx 1) x (mk_int ctx 9)
+let range ctx (x:BitVecExpr[,]) =        
+    let r x = m_le_x_le_n ctx (mk_bv ctx 1) x (mk_bv ctx 9)
     mk_ands ctx [ r x.[0,0]; r x.[1,0]; r x.[2,0]; r x.[3,0]; r x.[4,0]; r x.[5,0]; r x.[6,0]; r x.[7,0]; r x.[8,0];
                   r x.[0,1]; r x.[1,1]; r x.[2,1]; r x.[3,1]; r x.[4,1]; r x.[5,1]; r x.[6,1]; r x.[7,1]; r x.[8,1];
                   r x.[0,2]; r x.[1,2]; r x.[2,2]; r x.[3,2]; r x.[4,2]; r x.[5,2]; r x.[6,2]; r x.[7,2]; r x.[8,2];
@@ -93,7 +96,7 @@ let range ctx (x:IntExpr[,]) =
                   r x.[0,8]; r x.[1,8]; r x.[2,8]; r x.[3,8]; r x.[4,8]; r x.[5,8]; r x.[6,8]; r x.[7,8]; r x.[8,8] ]
 
 // x00 # x10 # ... # x80
-let col_distinct ctx (x:IntExpr[,]) = 
+let col_distinct ctx (x:BitVecExpr[,]) = 
     mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[1,0]; x.[2,0]; x.[3,0]; x.[4,0]; x.[5,0]; x.[6,0]; x.[7,0]; x.[8,0]]);
                   (mk_distinct ctx [x.[0,1]; x.[1,1]; x.[2,1]; x.[3,1]; x.[4,1]; x.[5,1]; x.[6,1]; x.[7,1]; x.[8,1]]);
                   (mk_distinct ctx [x.[0,2]; x.[1,2]; x.[2,2]; x.[3,2]; x.[4,2]; x.[5,2]; x.[6,2]; x.[7,2]; x.[8,2]]);
@@ -105,7 +108,7 @@ let col_distinct ctx (x:IntExpr[,]) =
                   (mk_distinct ctx [x.[0,8]; x.[1,8]; x.[2,8]; x.[3,8]; x.[4,8]; x.[5,8]; x.[6,8]; x.[7,8]; x.[8,8]]) ]
 
 // x00 # x01 # ... # x08
-let row_distinct ctx (x:IntExpr[,]) = 
+let row_distinct ctx (x:BitVecExpr[,]) = 
     mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[0,1]; x.[0,2]; x.[0,3]; x.[0,4]; x.[0,5]; x.[0,6]; x.[0,7]; x.[0,8]]);
                   (mk_distinct ctx [x.[1,0]; x.[1,1]; x.[1,2]; x.[1,3]; x.[1,4]; x.[1,5]; x.[1,6]; x.[1,7]; x.[1,8]]);
                   (mk_distinct ctx [x.[2,0]; x.[2,1]; x.[2,2]; x.[2,3]; x.[2,4]; x.[2,5]; x.[2,6]; x.[2,7]; x.[2,8]]);
@@ -116,7 +119,7 @@ let row_distinct ctx (x:IntExpr[,]) =
                   (mk_distinct ctx [x.[7,0]; x.[7,1]; x.[7,2]; x.[7,3]; x.[7,4]; x.[7,5]; x.[7,6]; x.[7,7]; x.[7,8]]);
                   (mk_distinct ctx [x.[8,0]; x.[8,1]; x.[8,2]; x.[8,3]; x.[8,4]; x.[8,5]; x.[8,6]; x.[8,7]; x.[8,8]]) ]
 
-let subgrid_distinct ctx (x:IntExpr[,]) = 
+let subgrid_distinct ctx (x:BitVecExpr[,]) = 
     mk_ands ctx [ (mk_distinct ctx [x.[0,0]; x.[0,1]; x.[0,2];    //X--
                                     x.[1,0]; x.[1,1]; x.[1,2];    //---
                                     x.[2,0]; x.[2,1]; x.[2,2];]); //---
@@ -150,6 +153,8 @@ let subgrid_distinct ctx (x:IntExpr[,]) =
 open System.Diagnostics
 
 let main _ = 
+//your sample code
+//System.Threading.Thread.Sleep(500);
     let ctx = new Context()
     let grid_data = "--2--1-6-\n--7--4---\n5-----9--\n-1-3-----\n8---5--4-\n-----6-2-\n--6-----7\n---8--3--\n-4-9--2--"
     let g0 = mk_grid ctx 
