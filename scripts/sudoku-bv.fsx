@@ -1,4 +1,5 @@
 ﻿// bitvector version of sudoku.fsx
+// SI: error, gives unsat right now? 
 
 #I @"..\\platform\\windows"
 #r "Microsoft.Z3.dll"
