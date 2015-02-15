@@ -45,11 +45,22 @@ let mk_ors (z3:Context) (tt:BoolExpr list) =
     z3.MkOr(List.toArray tt)
 
 // m <= x <= n
-// SI: int comparison is faster than disjunction, it appears? 
-let m_le_x_le_n (z3:Context) x range = 
-    let m,n = List.max range, List.min range
-    mk_and z3 (mk_le z3 (mk_bv z3 m) x) (mk_le z3 x (mk_bv z3 n))
+// SI: int comparison is faster than disjunction, it appears? And by 2 factors?!
+
+// time 75ms
+let m_le_x_le_n_bv (z3:Context) x range = 
+    let m,n = List.min range, List.max range
+    let m,n = mk_bv z3 m, mk_bv z3 n
+    mk_and z3 (mk_le z3 m x) (mk_le z3 x n)
     //mk_ors z3 (List.map (fun i -> mk_eq z3 x (mk_bv z3 i)) range)
+
+// time 1439ms
+let m_le_x_le_n_bv_disj (z3:Context) x range = 
+    mk_ors z3 (List.map (fun i -> mk_eq z3 x (mk_bv z3 i)) range)
+
+// m <= x <= n
+let m_le_x_le_n (z3:Context) (m) (x) (n) = 
+    mk_and z3 (mk_le z3 m x) (mk_le z3 x n)
 
 let mk_distinct (z3:Context) (tt:Expr list) = 
     z3.MkDistinct (List.toArray tt)
@@ -93,7 +104,10 @@ let init_grid (ctx:Context) (x:BitVecExpr[,]) (s:string) =
 
 // 1 <= x_{i,j} <= 9
 let range ctx (x:BitVecExpr[,]) =        
-    let r x = m_le_x_le_n ctx x [1..9] 
+    // This works 
+    let r x = m_le_x_le_n ctx (mk_bv ctx 1) x (mk_bv ctx 9)
+    // What about this? bv 67ms, 
+    let r x = m_le_x_le_n_bv ctx x [1..9]
     mk_ands ctx [ r x.[0,0]; r x.[1,0]; r x.[2,0]; r x.[3,0]; r x.[4,0]; r x.[5,0]; r x.[6,0]; r x.[7,0]; r x.[8,0];
                   r x.[0,1]; r x.[1,1]; r x.[2,1]; r x.[3,1]; r x.[4,1]; r x.[5,1]; r x.[6,1]; r x.[7,1]; r x.[8,1];
                   r x.[0,2]; r x.[1,2]; r x.[2,2]; r x.[3,2]; r x.[4,2]; r x.[5,2]; r x.[6,2]; r x.[7,2]; r x.[8,2];
@@ -162,8 +176,6 @@ let subgrid_distinct ctx (x:BitVecExpr[,]) =
 open System.Diagnostics
 
 let main _ = 
-//your sample code
-//System.Threading.Thread.Sleep(500);
     let ctx = new Context()
     let grid_data = "--2--1-6-\n--7--4---\n5-----9--\n-1-3-----\n8---5--4-\n-----6-2-\n--6-----7\n---8--3--\n-4-9--2--"
     let g0 = mk_grid ctx 
