@@ -151,7 +151,9 @@ open System.Diagnostics
 
 let main _ = 
     let ctx = new Context()
-    let grid_data = "--2--1-6-\n--7--4---\n5-----9--\n-1-3-----\n8---5--4-\n-----6-2-\n--6-----7\n---8--3--\n-4-9--2--"
+    // Guardian Sudoku #3,138.
+    let grid_data = "3--29--5-\n--2-4-693\n------8-4\n-8-------\n--9-7-3--\n-------4-\n5-8------\n274-6-5--\n-3--24--9"
+
     let g0 = mk_grid ctx 
     
     let solver = ctx.MkSolver()
