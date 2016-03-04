@@ -20,12 +20,12 @@ you now need to have both F# and Z3, with it's .NET bindings, installed on your 
 
 #### Compiler etc 
 
-Visual Studio 2013 will already give you F# (fsi, fsc).
+Visual Studio 2015 will already give you F# (fsi, fsc).
 
 #### Z3 
 
 You can get Z3 in several ways:
-Either pick up the dlls from platform/windows; or download them from http://z3.codeplex.com;
+Download the latest binaries from https://github.com/Z3Prover/z3/releases; 
 If you want to build yourself, download the source from http://z3.codeplex.com and follow the instructions from there to build it yourself. 
 	
 	
@@ -55,7 +55,7 @@ a Terminal -- if it's not there yet, OS X will offer to install XCode).
 
 #### Z3  
 
-You need the Z3 dll and it's .NET wrapper. You can either get these pre-built from platform/osx-mono, and skip this section.
+You need the Z3 dll and it's .NET wrapper. You can either get these pre-built from https://github.com/Z3Prover/z3/releases, and skip this section.
 If you want to build it yourself, read on. 
 
 First, get the Z3 sources for z3/unstable (4.3.2 is known to work) from http://z3.codeplex.com/. 
