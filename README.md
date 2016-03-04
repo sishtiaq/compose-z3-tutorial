@@ -55,7 +55,7 @@ a Terminal -- if it's not there yet, OS X will offer to install XCode).
 
 #### Z3  
 
-You need the Z3 dll and it's .NET wrapper. You can either get these pre-built from https://github.com/Z3Prover/z3/releases, and skip this section.
+You need the Z3 dll and it's .NET wrapper. You can either get a slightly old version of these pre-built from platform/{osx-mono,linux-ubuntu-x64} and skip this section. 
 If you want to build it yourself, read on. 
 
 First, get the Z3 sources for z3/unstable (4.3.2 is known to work) from http://z3.codeplex.com/. 
