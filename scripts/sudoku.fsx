@@ -1,5 +1,5 @@
-﻿
-#I @"..\\platform\\windows"
+﻿// This z3 needs to be a x86 dll
+#I @"C:\Users\sishtiaq\Downloads\z3-4.4.1-x86-win\z3-4.4.1-x86-win\bin";;
 #r "Microsoft.Z3.dll"
 
 open Microsoft.Z3 
@@ -122,12 +122,12 @@ let subgrid_distinct ctx (x:IntExpr[,]) =
                                     x.[2,0]; x.[2,1]; x.[2,2];]); //---
                   (mk_distinct ctx [x.[3,0]; x.[3,1]; x.[3,2];    //---
                                     x.[4,0]; x.[4,1]; x.[4,2];    //X--
-                                    x.[5,0]; x.[5,1]; x.[5,2];]);  //---
+                                    x.[5,0]; x.[5,1]; x.[5,2];]); //---
                   (mk_distinct ctx [x.[6,0]; x.[6,1]; x.[6,2];    //---
                                     x.[7,0]; x.[7,1]; x.[7,2];    //---
-                                    x.[8,0]; x.[8,1]; x.[8,2];]);  //X--
+                                    x.[8,0]; x.[8,1]; x.[8,2];]); //X--
                 //
-                  (mk_distinct ctx [x.[0,3]; x.[0,4]; x.[0,5];     //-X-
+                  (mk_distinct ctx [x.[0,3]; x.[0,4]; x.[0,5];    //-X-
                                     x.[1,3]; x.[1,4]; x.[1,5];
                                     x.[2,3]; x.[2,4]; x.[2,5];]); 
                   (mk_distinct ctx [x.[3,3]; x.[3,4]; x.[3,5];
@@ -137,7 +137,7 @@ let subgrid_distinct ctx (x:IntExpr[,]) =
                                     x.[7,3]; x.[7,4]; x.[7,5];
                                     x.[8,3]; x.[8,4]; x.[8,5];]); 
                 //      
-                  (mk_distinct ctx [x.[0,6]; x.[0,7]; x.[0,8];      //--X
+                  (mk_distinct ctx [x.[0,6]; x.[0,7]; x.[0,8];    //--X
                                     x.[1,6]; x.[1,7]; x.[1,8];
                                     x.[2,6]; x.[2,7]; x.[2,8]]); 
                   (mk_distinct ctx [x.[3,6]; x.[3,7]; x.[3,8];
@@ -151,7 +151,7 @@ open System.Diagnostics
 
 let main _ = 
     let ctx = new Context()
-    // Guardian Sudoku #3,138.
+    // Guardian Sudoku #3,138 http://www.theguardian.com/lifeandstyle/2015/jun/02/sudoku-3138-medium. 
     let grid_data = "3--29--5-\n--2-4-693\n------8-4\n-8-------\n--9-7-3--\n-------4-\n5-8------\n274-6-5--\n-3--24--9"
 
     let g0 = mk_grid ctx 
