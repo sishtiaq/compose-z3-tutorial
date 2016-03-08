@@ -20,16 +20,19 @@ you now need to have both F# and Z3, with it's .NET bindings, installed on your 
 
 #### Compiler etc 
 
-Visual Studio 2015 will already give you F# (fsi, fsc).
+Visual Studio 2015 will already give you F# (fsi, fsc). 
 
 #### Z3 
 
 You can get Z3 in several ways:
 Download the latest binaries from https://github.com/Z3Prover/z3/releases; 
-If you want to build yourself, download the source from http://z3.codeplex.com and follow the instructions from there to build it yourself. 
+If you want to build it yourself, download the source from http://z3.codeplex.com and follow the instructions from there. 
 	
 	
 ### Using Mono (for Linux and MacOS)
+
+08-03-2016: @iwntersteiger tells me that you can pass --dotnet to mk_make.py. So you might not have to do the following,
+but I haven't tried it yet myself.
 
 (Thank you to Marc Brockschmidt for these instrutions, in particular for his perl wisdom.)  
 
