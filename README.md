@@ -31,10 +31,10 @@ If you want to build it yourself, download the source from https://github.com/Z3
 	
 ### Using Mono (for Linux and MacOS)
 
-08-03-2016: @iwntersteiger tells me that you can pass --dotnet to mk_make.py. So you might not have to do the following,
+08-03-2016: @wintersteiger tells me that you can pass --dotnet to mk_make.py. So you might not have to do the following,
 but I haven't tried it yet myself.
 
-(Thank you to Marc Brockschmidt for these instrutions, in particular for his perl wisdom.)  
+(Thank you to @mmjb for these instrutions, in particular for his perl wisdom.)  
 
 #### Compiler etc 
 
