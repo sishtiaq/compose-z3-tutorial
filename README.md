@@ -26,7 +26,7 @@ Visual Studio 2015 will already give you F# (fsi, fsc).
 
 You can get Z3 in several ways:
 Download the latest binaries from https://github.com/Z3Prover/z3/releases; 
-If you want to build it yourself, download the source from http://z3.codeplex.com and follow the instructions from there. 
+If you want to build it yourself, download the source from https://github.com/Z3Prover/z3 and follow the instructions from there. 
 	
 	
 ### Using Mono (for Linux and MacOS)
