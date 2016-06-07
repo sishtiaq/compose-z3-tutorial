@@ -12,7 +12,7 @@ The emphasis will be on how to represent your problem to Z3. We'll code as we go
 
 We will be using Z3 from F#'s repl (fsi on Windows, fsharpi on Mac OS X and Linux). 
 Starting from a fully-fledged dev machine 
-(Windows + Visual Studio 2013, OS X with XCode dev tools, Linux with g++, etc), 
+(Windows + Visual Studio 2015, OS X with XCode dev tools, Linux with g++, etc), 
 you now need to have both F# and Z3, with it's .NET bindings, installed on your machine: 
 
 
