@@ -112,7 +112,7 @@ Copy the z3 binary and it's .NET wrapper over to a directory where you want to r
 ### Rock n'roll
  
 Here, we're starting fsharpi on OS X. The -I flag is assuming the Z3 dlls are in ../platform/osx-mono. 
-Where-every your dlls are (~/my-z3-bin), make sure both the native z3 dll and it's .NET wrapper are in the same directory. 
+Where-ever your dlls are (~/my-z3-bin), make sure both the native z3 dll and it's .NET wrapper are in the same directory. 
 
 ```
 $ fsharpi -I:../platform/osx-mono -r:Microsoft.Z3
