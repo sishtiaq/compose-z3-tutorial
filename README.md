@@ -8,6 +8,10 @@ In this tutorial, I want to show you how to use Z3 from your favourite functiona
 with F#, but you can ride along in OCaml too). We'll write small programs to solve puzzles like Sudoku, algebra problems, etc.
 The emphasis will be on how to represent your problem to Z3. We'll code as we go.
 
+Giving this tutorial at Spotify's offices in New York, Dec 2015
+https://twitter.com/brendanadamson/status/561943250773487616
+
+
 ## What you need to have ready
 
 We will be using Z3 from F#'s repl (fsi on Windows, fsharpi on Mac OS X and Linux). 
